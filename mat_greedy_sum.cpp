@@ -46,9 +46,11 @@ void sortLines() {
 void sortFirstCol() {
   for (int i = 0; i < lines - 1; i++) {
     if (elements[i][0] < elements[i+1][0]) {
-      for (int j = 0; j < cols; j++) elements[lines][j] = elements[i][j];
-      for (int j = 0; j < cols; j++) elements[i][j] = elements[i+1][j];
-      for (int j = 0; j < cols; j++) elements[i+1][j] = elements[lines][j];
+      for (int j = 0; j < cols; j++) {
+        ELEMENT *temp = elements[i][j];
+        elements[i][j] = elements[i+1][j];
+        elements[i+1][j] = temp;
+      }
 
       if (i > 0) i -= 2;
     }
