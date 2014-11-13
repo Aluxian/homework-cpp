@@ -7,9 +7,9 @@ void citire() {
     cin >> n;
 }
 
-int max(int r) {
+int max(int p) {
     int m = 0;
-    for (int i = 1; i <= r; i++)
+    for (int i = 1; i <= p; i++)
         if (s[i] > m)
             m = s[i];
     return m;
@@ -24,12 +24,11 @@ bool solutie(int p) {
 }
 
 void afis(int p) {
-    for (int i = 1; i <= max(n); i++) {
+    for (int i = 1; i <= max(n); i++)
         for (int j = 1; j <= n; j++)
             if (s[j] == i)
                 cout << j << " ";
-        cout << endl << "---------------------------------" << endl;
-    }
+    cout << "----------------" << endl;
 }
 
 void bkt(int p) {
@@ -45,8 +44,7 @@ void bkt(int p) {
     }
 }
 
-int main()
-{
+int main() {
     citire();
     bkt(1);
     return 0;
