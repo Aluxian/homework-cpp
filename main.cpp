@@ -1,16 +1,16 @@
 #include <iostream>
 #include <fstream>
-#include "print_tools.h"
 
 using namespace std;
 
-int a[100][100], viz[100], n;
+int n, a[100][100], viz[100];
 
 void citire() {
     ifstream fin("graf.in");
     fin >> n;
 
     int x, y;
+
     while (fin >> x >> y) {
         a[x][y] = a[y][x] = 1;
     }
@@ -18,11 +18,11 @@ void citire() {
     fin.close();
 }
 
-void bfs(int x) {
-    int u, p, c[100];
-    u = p = 1;
+void lanturi_min(int x) {
+    int p, u, c[100];
+    p = u = 1;
 
-    viz[x] = 1;
+    viz[x] = -1;
     c[p] = x;
 
     while (p <= u) {
@@ -30,24 +30,35 @@ void bfs(int x) {
 
         for (int y = 1; y <= n; y++) {
             if (a[x][y] && !viz[y]) {
-                viz[y] = 1;
                 c[++u] = y;
+                viz[y] = x;
             }
         }
     }
+}
 
-    for (int i = 1; i < p; i++) {
-        cout << c[i] << " ";
+void afis_lanturi_min(int x) {
+    if (x != -1) {
+        afis_lanturi_min(viz[x]);
+        cout << x << " ";
+    } else {
+        cout << endl;
     }
 }
 
 int main() {
     citire();
-    print_mat(a, n);
 
     int start;
     cin >> start;
 
-    bfs(start);
+    lanturi_min(start);
+
+    for (int i = 1; i <= n; i++) {
+        if (viz[i] != 0) {
+            afis_lanturi_min(i);
+        }
+    }
+
     return 0;
 }

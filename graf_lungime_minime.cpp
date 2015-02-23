@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include "print_tools.h"
 
 using namespace std;
 
@@ -11,6 +10,7 @@ void citire() {
     fin >> n;
 
     int x, y;
+
     while (fin >> x >> y) {
         a[x][y] = a[y][x] = 1;
     }
@@ -19,7 +19,7 @@ void citire() {
 }
 
 void bfs(int x) {
-    int u, p, c[100];
+    int u, p, c[100], t = x;
     u = p = 1;
 
     viz[x] = 1;
@@ -30,20 +30,29 @@ void bfs(int x) {
 
         for (int y = 1; y <= n; y++) {
             if (a[x][y] && !viz[y]) {
-                viz[y] = 1;
                 c[++u] = y;
+                viz[y] = viz[x] + 1;
             }
         }
     }
 
+    cout << "c: ";
     for (int i = 1; i < p; i++) {
         cout << c[i] << " ";
     }
+    cout << endl;
+
+    for (int i = 1; i <= n; i++) {
+        if (viz[i] != 0) {
+            printf("lantul %i-%i de lungime minima %i\n", t, i, viz[i] - 1);
+        }
+    }
+
+    cout << endl;
 }
 
 int main() {
     citire();
-    print_mat(a, n);
 
     int start;
     cin >> start;

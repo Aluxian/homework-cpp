@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int a[100][100], viz[100], n;
+int a[100][100], viz[100], c[100], n, p = 0;
 
 void citire() {
     ifstream fin("graf.in");
@@ -18,26 +18,14 @@ void citire() {
     fin.close();
 }
 
-void bfs(int x) {
-    int u, p, c[100];
-    u = p = 1;
-
+void dfs(int x) {
     viz[x] = 1;
-    c[p] = x;
+    c[++p] = x;
 
-    while (p <= u) {
-        x = c[p++];
-
-        for (int y = 1; y <= n; y++) {
-            if (a[x][y] && !viz[y]) {
-                viz[y] = 1;
-                c[++u] = y;
-            }
+    for (int y = 1; y <= n; y++) {
+        if (a[x][y] && !viz[y]) {
+            dfs(y);
         }
-    }
-
-    for (int i = 1; i < p; i++) {
-        cout << c[i] << " ";
     }
 }
 
@@ -48,6 +36,10 @@ int main() {
     int start;
     cin >> start;
 
-    bfs(start);
+    dfs(start);
+    for (int i = 1; i <= p; i++) {
+        cout << c[i] << " ";
+    }
+
     return 0;
 }

@@ -3,5 +3,5 @@ project(Homework)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES graf_bfs.cpp)
+set(SOURCE_FILES main.cpp)
 add_executable(Homework ${SOURCE_FILES})
