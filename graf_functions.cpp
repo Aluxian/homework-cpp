@@ -115,7 +115,7 @@ bool f7(int a[][100], int n) {
     return true;
 }
 
-int f8(int a[][100], int b[][100], int n) {
+bool f8(int a[][100], int b[][100], int n) {
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
             if (a[i][j] == b[i][j]) {
