@@ -38,6 +38,24 @@ int main() {
         }
     }
 
-    printf("nr min muchii ad. pt graf conex = %i", k - 1);
+    int comp = -1;
+    int max = -1;
+
+    for (int i = 1; i <= k; i++) {
+        int nr = 0;
+
+        for (int j = 1; j <= n; j++) {
+            if (viz[j] == i) {
+                nr++;
+            }
+        }
+
+        if (nr > max) {
+            max = nr;
+            comp = i;
+        }
+    }
+
+    printf("componenta cu cele mai multe noduri (%i) este %i", max, comp);
     return 0;
 }

@@ -38,6 +38,17 @@ int main() {
         }
     }
 
-    printf("nr min muchii ad. pt graf conex = %i", k - 1);
+    for (int i = 1; i <= k; i++) {
+        printf("componenta %i:", i);
+
+        for (int j = 1; j <= n; j++) {
+            if (viz[j] == i) {
+                printf(" %i", j);
+            }
+        }
+
+        cout << endl;
+    }
+
     return 0;
 }
